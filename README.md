@@ -47,4 +47,15 @@ WanderLust-MERN/
 1. Clone the repository  
 git clone https://github.com/USERNAME/WanderLust-MERN.git
 
+---
+
+## 📅 Daily Progress Log
+
+**Day 1**
+- Project initialized
+- Repository setup
+- Basic folder structure created
+
+
+
 
