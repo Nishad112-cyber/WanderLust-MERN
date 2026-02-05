@@ -27,3 +27,24 @@ It allows users to explore places, create listings, add reviews, and manage cont
 ---
 
 ## 📂 Project Structure
+
+WanderLust-MERN/
+├── backend/
+│ ├── models/
+│ ├── routes/
+│ ├── controllers/
+│ └── app.js
+├── frontend/
+│ ├── src/
+│ └── public/
+├── README.md
+└── package.json
+
+
+---
+
+## ⚙️ Installation & Setup
+1. Clone the repository  
+git clone https://github.com/USERNAME/WanderLust-MERN.git
+
+
