@@ -56,6 +56,12 @@ git clone https://github.com/USERNAME/WanderLust-MERN.git
 - Repository setup
 - Basic folder structure created
 
+**Day 2**
+
+- Created EJS templates for 'New Listing' and 'Index Listings' pages
+- Implemented Create (POST /listings) functionality
+- Implemented Read (GET /listings and GET /listings/:id) functionality
+- Successfully tested creating new listings and displaying all listings
 
 
 
