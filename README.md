@@ -63,5 +63,11 @@ git clone https://github.com/USERNAME/WanderLust-MERN.git
 - Implemented Read (GET /listings and GET /listings/:id) functionality
 - Successfully tested creating new listings and displaying all listings
 
+**Day 3** 
+- Implemented Update feature for listings in the WanderLust project.
+  Created edit view (edit.ejs) and connected it with backend to update MongoDB entries.
+  Verified functionality: users can edit and save listings safely.
+  Added data validation and error handling for reliability.
+
 
 
