@@ -1,9 +1,11 @@
 const express= require("express");
 const app= express();
 const Listing = require("./models/listing.js");
+const methodOverride= require("method-override");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 const mongoose = require("mongoose");
 const path = require("path");
@@ -28,8 +30,8 @@ app.get("/", (req,res)=>{
 });
 
  // new rout 
- app.get("/listing/new", (req,res)=>{
- res.render("listings/new.ejs")   
+ app.get("/listings/new", (req,res)=>{
+ res.render("listings/new")   
 });
 //index rout 
 app.get("/listings",async (req,res)=>{
@@ -50,6 +52,21 @@ const newlisting= new Listing(req.body.listings)
   await newlisting.save();
 res.redirect("/listings");
 });
+
+//edit rout 
+app.get("/listings/:id/edit",async (req,res)=>{
+      let {id}= req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/edit", {listing });
+});
+
+// upadate rout 
+app.put("/listings/:id", async (req,res) =>{
+    let {id}= req.params;
+    console.log("ID:", id);
+   await Listing.findByIdAndUpdate(id , {...req.body.listings});
+   res.redirect("/listings")
+})
 
 // app.get("/testlisting",async (req,res)=>{
 //     let samplelisting= new Listing({
