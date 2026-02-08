@@ -68,6 +68,13 @@ app.put("/listings/:id", async (req,res) =>{
    res.redirect("/listings")
 })
 
+// delete rout 
+app.delete("/listings/:id", async (req,res) =>{
+    let{id}= req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
+})
+
 // app.get("/testlisting",async (req,res)=>{
 //     let samplelisting= new Listing({
 //         title:"my new villa",
