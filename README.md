@@ -69,7 +69,9 @@ git clone https://github.com/USERNAME/WanderLust-MERN.git
   Verified functionality: users can edit and save listings safely.
   Added data validation and error handling for reliability.
 
-   **Day 4** 
+
+   **Day 4**
+  
   Implemented delete functionality and updated EJS templates
 
 
