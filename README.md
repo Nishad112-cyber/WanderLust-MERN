@@ -73,5 +73,5 @@ git clone https://github.com/USERNAME/WanderLust-MERN.git
   
   Implemented delete functionality and updated EJS templates
 
-
-
+ **Day 5**  
+Enhanced UI by adding CSS styling to listing and layout pages
