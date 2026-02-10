@@ -75,3 +75,7 @@ git clone https://github.com/USERNAME/WanderLust-MERN.git
 
  **Day 5**  
 Enhanced UI by adding CSS styling to listing and layout pages
+
+ **Day 6** 
+  Enhanced UI by adding CSS styling to listing and layout pages
+
