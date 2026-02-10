@@ -8,7 +8,15 @@
 <body>
     <h3>create a new listing</h3>
     <form method="POST" action="/listings">
-         <input name="listings[description]" placeholder="entr-description" type="text">
+         <div>
+         <label for="title" class="form-label">Title</label>
+         <input  name="listing[title]"placeholder="enter title" type="text"class="form-control"
+     />  
+   </div>
+   <div>
+      <label for="description" class="form-label">Description</label>
+       <textarea name="listing[description]" class="form-control" ></textarea>
+   </div>
          <br><br>
          <input name="listings[title]" placeholder="title" type="text">
          <br><br>
