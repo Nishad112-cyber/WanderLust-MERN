@@ -1,21 +1,50 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <h3>Listing Details :</h3>
-    <ul>
-         <li><%= listing.title %></li>
-         <li><%= listing.description %></li>
-         <li>&#8377;<%= listing.price.toLocaleString("en-IN") %></li>
-         <li><%= listing.location %></li>
-         <li><%= listing.country %></li>
-    </ul>
-    <br>
-    <a href="/listings/<%= listing._id %>/edit">Edit this Listing</a>
-    <br><br>
-    <form 
-                  action="/listings/<%= listing._id %>?_method=DELETE" 
-                  method="POST"
-                  style="display:inline;"
-                >
-                    <button>Delete</button>
-                </form>
+    <div class="col-8 offset-2">
+        <h3 class="mb-3">Listing Details :</h3>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Title:</strong></label>
+            <input type="text" class="form-control" value="<%= listing.title %>" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Description:</strong></label>
+            <input type="text" class="form-control" value="<%= listing.description %>" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Price:</strong></label>
+            <input type="text" class="form-control" value="&#8377;<%= listing.price.toLocaleString('en-IN') %>" readonly>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label class="form-label"><strong>Location:</strong></label>
+                <input type="text" class="form-control" value="<%= listing.location %>" readonly>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label class="form-label"><strong>Country:</strong></label>
+                <input type="text" class="form-control" value="<%= listing.country %>" readonly>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Image:</strong></label>
+            <input type="text" class="form-control" value="<%= listing.image %>" readonly>
+        </div>
+
+        <div class="mb-3">
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit this Listing</a>
+
+            <form 
+                action="/listings/<%= listing._id %>?_method=DELETE" 
+                method="POST"
+                style="display:inline;"
+            >
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
 </body>
