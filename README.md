@@ -79,3 +79,6 @@ Enhanced UI by adding CSS styling to listing and layout pages
  **Day 6** 
   Enhanced UI by adding CSS styling to listing and layout pages
 
+**Day 7** 
+  Added styling to all forms in the project. Improved layout and UI for better user experience.
+
