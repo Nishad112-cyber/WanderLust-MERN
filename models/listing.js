@@ -4,13 +4,24 @@ const Schema= mongoose.Schema;
 const listingSchema= new Schema({
     title:{ type: String,required: true},   
     description :String,
-    image :{
-        type :mongoose.Schema.Types.Mixed,
-        default:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-        set: (v)=> v==="" ? "https://images.unsplash.com/photo-1507525428034-b723cf961d3e":v,
-    },
+   image: {
+  url: {
+    type: String,
+    default: "https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1949&auto=format&fit=crop",
+    set: (v) => v === "" ? 
+      "https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1949&auto=format&fit=crop"
+      : v
+  },
+  filename: String
+},
+
+
+
     
-    price :Number,
+    price :{
+      type :Number,
+    required :true,
+    },
     location :String,
     country :String,
 

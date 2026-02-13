@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
     
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" novalidate class=" needs-validation" >
         <br><br>
         <div class="col-8 offset-2">
             <h3>create a new listing</h3>
@@ -10,42 +10,56 @@
              name="listings[title]"
              placeholder="enter title" 
              type="text"class="form-control"
-           />  
+           /> 
+           <div class="valid-feedback">
+        good title.
+      </div> 
         </div>
+         
 
    <div class="md-3 ">
       <label for="description" class="form-label">Description</label>
        <textarea
           name="listings[description]"
           placeholder="write a catchy decription"
-          class="form-control" >
+          class="form-control" 
+            required
+          >
+         
        </textarea>
+      
    </div>
 
       <div class="md-3 ">
           <label for="image" class="form-label">Image link</label>
-          <input name="listings[image]" placeholder="entr-image-link" type="text"  class="form-control">
+          <input name="listings[image][url]" placeholder="entr-image-link" type="text"  class="form-control">
       </div>
  
       <div class="row">
       <div class="md-3 col-md-4">
           <label for="price" class="form-label">price</label>
-           <input name="listings[price]" placeholder="1200" type="number" class="form-control">
+           <input name="listings[price]" placeholder="1200" type="number" class="form-control"
+           required
+           >
+            <div class="invalid-feedback"> enter price before submitting. </div>
       </div>
         
       <div class="md-3 col-md-8">
         <label for="country" class="form-label">country</label>
-        <input name="listings[country]" placeholder="Bharat" type="text" class="form-control" >
+        <input name="listings[country]" placeholder="Bharat" type="text" class="form-control"  required>
+
+      
+       <div class="invalid-feedback"> enter name  before submitting. </div>
       </div>
 
-      </div>
       <div class="md-3 ">
        <label for="location" class="form-label">location</label>
-        <input name="listings[location]" placeholder="Jaipur, Goa" type="text" class="form-control">
+        <input name="listings[location]" placeholder="Jaipur, Goa" type="text" class="form-control" required >
+         <div class="invalid-feedback"> enter location  before submitting. </div>
       </div>
          
       
-       
+       </div>
         <br><br>
          <button class="btn btn-dark">submit</button>
          <br><br>
