@@ -85,3 +85,7 @@ Enhanced UI by adding CSS styling to listing and layout pages
   **Day 8** 
   Added styling to all forms in the project. Improved layout and UI for better user experience
 
+  **Day 9** 
+
+  Learned about middleware functions and error handling techniques in Express.js; practiced debugging and managing errors.
+
