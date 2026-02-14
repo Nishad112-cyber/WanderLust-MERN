@@ -86,6 +86,12 @@ Enhanced UI by adding CSS styling to listing and layout pages
   Added styling to all forms in the project. Improved layout and UI for better user experience
 
   **Day 9** 
-
   Learned about middleware functions and error handling techniques in Express.js; practiced debugging and managing errors.
+
+   **Day 10** 
+   Strengthened backend architecture by implementing structured error-handling middleware.
+  Integrated custom error classes for consistent and scalable error management.
+  Revisited earlier CRUD functionalities to ensure stability and clean code practices.
+  Debugged and resolved issues related to routing and validation flow.
+  Improved understanding of Express middleware execution cycle and backend control flow.
 
