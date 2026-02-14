@@ -6,6 +6,7 @@ const methodOverride= require("method-override");
 const ejsMate = require("ejs-mate")
 const wrapAsync= require("./utils/wrapAsync.js");
 const ExpressError= require("./utils/ExpressError/ExpressError.js");
+const {listingSchema}= require("./schema.js")
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,6 +40,16 @@ app.get("/", (req,res)=>{
  app.get("/listings/new", (req,res)=>{
  res.render("listings/new")   
 });
+
+const validateListing=(req,res,next) =>{
+let result=   listingSchema.validate(req.body) ; 
+     if(error){
+        let errMsg= error.details.map((el) =>el.message).join(",");
+        throw new ExpressError(400, error)
+     }else{
+        next();
+     }
+}
 //index rout 
 app.get("/listings",wrapAsync (async(req,res)=>{
  const allListings=  await  Listing.find({})
@@ -54,10 +65,9 @@ app.get("/listings/:id", wrapAsync (async(req,res)=>{
 
 //create rout
 app.post("/listings",
-    wrapAsync  (async(req, res, next)=>{
-        if(!req.body.listing){
-            throw new ExpressError(400, "send valid request");
-        }
+    validateListing,
+    wrapAsync  (async(req, res, next)=>{  
+     
      const newlisting= new Listing(req.body.listings)
       await newlisting.save();
       res.redirect("/listings");
@@ -72,18 +82,21 @@ app.get("/listings/:id/edit",wrapAsync (async (req,res)=>{
 }));
 
 // upadate rout 
-app.put("/listings/:id", async (req, res) => {
+app.put("/listings/:id", 
+    validateListing,
+    async (req, res) => {
     let { id } = req.params;
     let updatedData = req.body.listings;
     // Old listing fetch karo
     let existingListing = await Listing.findById(id);
 
     // Agar image empty bheji hai to purani image hi rakho
-    if (!updatedData.image || updatedData.image.trim() === "") {
+    if (!updatedData.image.url || updatedData.image.url.trim() === "") {
         updatedData.image = existingListing.image;
     }
     await Listing.findByIdAndUpdate(id, updatedData, {
         runValidators: true,
+        new:true,
     });
     res.redirect("/listings");
 });
@@ -96,30 +109,15 @@ app.delete("/listings/:id", async(req,res) =>{
     res.redirect("/listings");
 })
 
-// app.get("/testlisting",async (req,res)=>{
-//     let samplelisting= new Listing({
-//         title:"my new villa",
-//         description:"by the beach",
-//         image:"nothing",
-//         price:6000,
-//         location: "goa",
-//         country:"india",
-//     });
-//     await samplelisting.save();
-//     console.log("sample test");
-//     res.send("success ");
-// });
 
-// app.use((err, req,res,next) =>{
-//     res.send("somthing is wrong : ")
-// });
 app.use( (req,res,next)=>{
     next(new  ExpressError(404, "page not found"))
 })
 
 app.use((err, req,res,next) =>{
     let {statusCode=500 ,message= "something went wrong"}= err;
-    res.status(statusCode).send(message);
+    res.status(statusCode).render("listings/errors" , {statusCode, message});
+    
 });
 
 app.listen(9000, ()=>{

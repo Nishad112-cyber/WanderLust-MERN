@@ -14,13 +14,10 @@ const listingSchema= new Schema({
   },
   filename: String
 },
-
-
-
-    
+  
     price :{
       type :Number,
-    required :true,
+      required:true,
     },
     location :String,
     country :String,
