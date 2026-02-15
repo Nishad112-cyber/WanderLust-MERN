@@ -83,7 +83,7 @@ app.get("/listings/:id/edit",wrapAsync (async (req,res)=>{
 
 // upadate rout 
 app.put("/listings/:id", 
-    validateListing,
+   
     async (req, res) => {
     let { id } = req.params;
     let updatedData = req.body.listings;
