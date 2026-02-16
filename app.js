@@ -6,7 +6,8 @@ const methodOverride= require("method-override");
 const ejsMate = require("ejs-mate")
 const wrapAsync= require("./utils/wrapAsync.js");
 const ExpressError= require("./utils/ExpressError/ExpressError.js");
-const {listingSchema}= require("./schema.js")
+const {listingSchema, reviewSchema}= require("./schema.js")
+const Review = require("./models/review.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -41,25 +42,36 @@ app.get("/", (req,res)=>{
  res.render("listings/new")   
 });
 
-const validateListing=(req,res,next) =>{
-let result=   listingSchema.validate(req.body) ; 
-     if(error){
-        let errMsg= error.details.map((el) =>el.message).join(",");
-        throw new ExpressError(400, error)
-     }else{
+const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body);
+    if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
         next();
-     }
-}
+    }
+};
+
+const validateReview = (req, res, next) => {
+    let { error } = reviewSchema.validate(req.body);
+    if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
+
 //index rout 
-app.get("/listings",wrapAsync (async(req,res)=>{
+app.get("/listings",wrapAsync(async(req,res)=>{
  const allListings=  await  Listing.find({})
  res.render("listings/index", {allListings});
 }));
 
 //show rout 
-app.get("/listings/:id", wrapAsync (async(req,res)=>{
+app.get("/listings/:id", wrapAsync(async(req,res)=>{
     let {id}= req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show", {listing});
 }));
 
@@ -84,7 +96,7 @@ app.get("/listings/:id/edit",wrapAsync (async (req,res)=>{
 // upadate rout 
 app.put("/listings/:id", 
    
-    async (req, res) => {
+  wrapAsync(async (req, res) => {
     let { id } = req.params;
     let updatedData = req.body.listings;
     // Old listing fetch karo
@@ -99,16 +111,37 @@ app.put("/listings/:id",
         new:true,
     });
     res.redirect("/listings");
-});
+}));
 
 
 // delete rout 
-app.delete("/listings/:id", async(req,res) =>{
+app.delete("/listings/:id",wrapAsync( async(req,res) =>{
     let{id}= req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
-})
+}));
+//reviews
+//post
+app.post("/listings/:id/reviews", validateReview ,wrapAsync(async (req, res) => {
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
 
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${listing._id}`);
+}));
+
+//delete review rout
+app.delete("/listings/:id/review/:reviewId", wrapAsync(async(req,res)=>{
+    let {id , reviewId} =req.params;
+
+    await Listing.findByIdAndUpdate(id,{$pull :{reviews :reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+}));
 
 app.use( (req,res,next)=>{
     next(new  ExpressError(404, "page not found"))
@@ -119,6 +152,9 @@ app.use((err, req,res,next) =>{
     res.status(statusCode).render("listings/errors" , {statusCode, message});
     
 });
+
+
+ 
 
 app.listen(9000, ()=>{
     console.log("server start now")
