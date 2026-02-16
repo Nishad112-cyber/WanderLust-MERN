@@ -95,3 +95,7 @@ Enhanced UI by adding CSS styling to listing and layout pages
   Debugged and resolved issues related to routing and validation flow.
   Improved understanding of Express middleware execution cycle and backend control flow.
 
+  **Day 11** 
+  Identified multiple runtime and logic errors in the backend routes and templates.
+   Fixed validation and data-handling issues in CRUD operations
+
