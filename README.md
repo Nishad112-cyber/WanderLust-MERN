@@ -99,3 +99,7 @@ Enhanced UI by adding CSS styling to listing and layout pages
   Identified multiple runtime and logic errors in the backend routes and templates.
    Fixed validation and data-handling issues in CRUD operations
 
+ **Day 12** 
+   Implemented comment and rating functionality in the MERN full-stack project.
+   Added user interaction features to allow feedback and reviews on listings/items.
+
