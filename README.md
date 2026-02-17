@@ -103,3 +103,6 @@ Enhanced UI by adding CSS styling to listing and layout pages
    Implemented comment and rating functionality in the MERN full-stack project.
    Added user interaction features to allow feedback and reviews on listings/items.
 
+   **Day 13** 
+   Added user interaction features to allow feedback and reviews on listings/items.
+
