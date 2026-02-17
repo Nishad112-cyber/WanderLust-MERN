@@ -7,7 +7,7 @@
          <div class="md-3 ">
             <label for="title" class="form-label">Title</label>
             <input 
-             name="listings[title]"
+             name="listing[title]"
              placeholder="enter title" 
              type="text"class="form-control"
            /> 
@@ -20,7 +20,7 @@
    <div class="md-3 ">
       <label for="description" class="form-label">Description</label>
        <textarea
-          name="listings[description]"
+          name="listing[description]"
           placeholder="write a catchy decription"
           class="form-control" 
             required
@@ -32,13 +32,13 @@
 
       <div class="md-3 ">
           <label for="image" class="form-label">Image link</label>
-          <input name="listings[image][url]" placeholder="entr-image-link" type="text"  class="form-control">
+          <input name="listing[image][url]" placeholder="entr-image-link" type="text"  class="form-control">
       </div>
  
       <div class="row">
       <div class="md-3 col-md-4">
           <label for="price" class="form-label">price</label>
-           <input name="listings[price]" placeholder="1200" type="number" class="form-control"
+           <input name="listing[price]" placeholder="1200" type="number" class="form-control"
            required
            >
             <div class="invalid-feedback"> enter price before submitting. </div>
@@ -46,7 +46,7 @@
         
       <div class="md-3 col-md-8">
         <label for="country" class="form-label">country</label>
-        <input name="listings[country]" placeholder="Bharat" type="text" class="form-control"  required>
+        <input name="listing[country]" placeholder="Bharat" type="text" class="form-control"  required>
 
       
        <div class="invalid-feedback"> enter name  before submitting. </div>
@@ -54,7 +54,7 @@
 
       <div class="md-3 ">
        <label for="location" class="form-label">location</label>
-        <input name="listings[location]" placeholder="Jaipur, Goa" type="text" class="form-control" required >
+        <input name="listing[location]" placeholder="Jaipur, Goa" type="text" class="form-control" required >
          <div class="invalid-feedback"> enter location  before submitting. </div>
       </div>
          
