@@ -7,13 +7,16 @@ const ejsMate = require("ejs-mate")
 const wrapAsync= require("./utils/wrapAsync.js");
 const ExpressError= require("./utils/ExpressError/ExpressError.js");
 const {listingSchema, reviewSchema}= require("./schema.js")
+
 const Review = require("./models/review.js");
+
+const listings= require("./routes/listing.js")
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
-app.use(express.static(path.join(__dirname ,"/public")))
+app.use(express.static(path.join(__dirname ,"/public")));
 
 const mongoose = require("mongoose");
 
@@ -36,11 +39,7 @@ app.get("/", (req,res)=>{
     res.send("i am ready to get request ")
 
 });
-
- // new rout 
- app.get("/listings/new", (req,res)=>{
- res.render("listings/new")   
-});
+ 
 
 const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
@@ -51,7 +50,6 @@ const validateListing = (req, res, next) => {
         next();
     }
 };
-
 const validateReview = (req, res, next) => {
     let { error } = reviewSchema.validate(req.body);
     if (error) {
@@ -62,64 +60,13 @@ const validateReview = (req, res, next) => {
     }
 };
 
-//index rout 
-app.get("/listings",wrapAsync(async(req,res)=>{
- const allListings=  await  Listing.find({})
- res.render("listings/index", {allListings});
-}));
-
-//show rout 
-app.get("/listings/:id", wrapAsync(async(req,res)=>{
-    let {id}= req.params;
-    const listing = await Listing.findById(id).populate("reviews");
-    res.render("listings/show", {listing});
-}));
-
-//create rout
-app.post("/listings",
-    validateListing,
-    wrapAsync  (async(req, res, next)=>{  
-     
-     const newlisting= new Listing(req.body.listings)
-      await newlisting.save();
-      res.redirect("/listings");
-   })
-);
-
-//edit rout 
-app.get("/listings/:id/edit",wrapAsync (async (req,res)=>{
-      let {id}= req.params;
-    const listing = await Listing.findById(id);
-    res.render("listings/edit", {listing });
-}));
-
-// upadate rout 
-app.put("/listings/:id", 
-   
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let updatedData = req.body.listings;
-    // Old listing fetch karo
-    let existingListing = await Listing.findById(id);
-
-    // Agar image empty bheji hai to purani image hi rakho
-    if (!updatedData.image.url || updatedData.image.url.trim() === "") {
-        updatedData.image = existingListing.image;
-    }
-    await Listing.findByIdAndUpdate(id, updatedData, {
-        runValidators: true,
-        new:true,
-    });
-    res.redirect("/listings");
-}));
 
 
-// delete rout 
-app.delete("/listings/:id",wrapAsync( async(req,res) =>{
-    let{id}= req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-}));
+
+
+
+app.use("/listings" ,listings);
+
 //reviews
 //post
 app.post("/listings/:id/reviews", validateReview ,wrapAsync(async (req, res) => {
@@ -152,9 +99,6 @@ app.use((err, req,res,next) =>{
     res.status(statusCode).render("listings/errors" , {statusCode, message});
     
 });
-
-
- 
 
 app.listen(9000, ()=>{
     console.log("server start now")
