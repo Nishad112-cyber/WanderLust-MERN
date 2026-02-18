@@ -38,7 +38,7 @@ router.get("/:id", wrapAsync(async(req,res)=>{
 router.post("/",
   validateListing,
   wrapAsync(async (req, res) => {
-    let listingData = req.body.listing || {};
+    let listingData = req.body.listing;
 
     if (!listingData.image || !listingData.image.url || listingData.image.url.trim() === "") {
       listingData.image = {
