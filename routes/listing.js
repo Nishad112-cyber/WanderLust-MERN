@@ -34,25 +34,24 @@ router.get("/:id", wrapAsync(async(req,res)=>{
     res.render("listings/show", {listing});
 }));
 
-//create rout
-router.post("/",
-  validateListing,
-  wrapAsync(async (req, res) => {
-    let listingData = req.body.listing;
+//create route
 
-    if (!listingData.image || !listingData.image.url || listingData.image.url.trim() === "") {
-      listingData.image = {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-        filename: "default"
-      };
-    } else {
-      listingData.image.filename = "user-upload";
-    }
-    const newlisting = new Listing(listingData);
-    await newlisting.save();
-    res.redirect("/listings");
-  })
+router.post("/",
+    validateListing,
+    wrapAsync(async (req, res, next) => {  
+        // Copy listing data
+        const listingData = { ...req.body.listing };
+
+        // Agar image object hai (tumhare form ka structure), url ko string me set karo
+        listingData.image = listingData.image?.url?.trim() || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e";
+
+        const newListing = new Listing(listingData);
+        await newListing.save();
+        res.redirect("/listings");
+    })
 );
+
+
 
 
 //edit rout 
