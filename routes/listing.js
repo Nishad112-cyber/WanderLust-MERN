@@ -72,9 +72,10 @@ router.put("/:id",
         updatedData.image = existingListing.image;
     }
     await Listing.findByIdAndUpdate(id, updatedData, {
-        runValidators: true,
-        new:true,
-    });
+    runValidators: true,
+    returnDocument: "after",
+});
+
     res.redirect("/listings");
 }));
 
