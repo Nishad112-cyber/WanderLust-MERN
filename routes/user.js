@@ -14,7 +14,7 @@ router.post("/signup" ,
             let{username, email, password}= req.body;
            const newUser=  new User({email, username});
            const  registeredUser=  await User.register(newUser, password);
-           console.log(registeredUser);
+        //    console.log(registeredUser);
            req.flash("success", "welocme to wanderlust ");
            res.redirect("/listings")
         } catch(e){
