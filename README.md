@@ -109,7 +109,11 @@ Added user interaction features to allow feedback and reviews on listings/items.
 **Day 14**  
 Today I implemented and integrated an alert notification feature into my full-stack web application to improve user feedback and interaction
 
-**Day 15**  debugging and policing some fature
+**Day 15**
+debugging and policing some fature
+
+**Day 15**
+ Implemented and integrated user authentication (login) functionality to enable secure access to the application.
 
    
 
