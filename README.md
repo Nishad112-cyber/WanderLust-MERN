@@ -103,3 +103,17 @@ Enhanced UI by adding CSS styling to listing and layout pages
    Implemented comment and rating functionality in the MERN full-stack project.
    Added user interaction features to allow feedback and reviews on listings/items.
 
+  **Day 13** 
+Added user interaction features to allow feedback and reviews on listings/items.
+
+**Day 14**  
+Today I implemented and integrated an alert notification feature into my full-stack web application to improve user feedback and interaction
+
+**Day 15**
+debugging and policing some fature
+
+**Day 16**
+ Implemented and integrated user authentication (login) functionality to enable secure access to the application.
+
+   
+

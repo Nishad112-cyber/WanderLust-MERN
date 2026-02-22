@@ -29,6 +29,7 @@ router.get("/",wrapAsync(async(req,res)=>{
  res.render("listings/new.ejs");   
 });
 
+
 //show rout 
 router.get("/:id", wrapAsync(async(req,res)=>{
     let {id}= req.params;
