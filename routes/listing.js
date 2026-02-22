@@ -33,8 +33,12 @@ router.get("/",wrapAsync(async(req,res)=>{
 router.get("/:id", wrapAsync(async(req,res)=>{
     let {id}= req.params;
     const listing = await Listing.findById(id)
-    .populate("reviews")
-    // .populate("owner");
+    .populate({ path :"reviews",
+        populate : {
+            path : "author",
+        }
+    })
+    .populate("owner");
     res.render("listings/show", {listing});
 }));
 
