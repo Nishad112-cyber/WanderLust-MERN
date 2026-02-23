@@ -16,19 +16,10 @@ async function main(){
 }
 
 
-
-const Data = async () => {
+const Data = async ()=>{
     await Listing.deleteMany({});
+    initData.Data= initData.data.map((obj) =>({...obj, owner :'6999fd1642be0738d93fc0f1'}));
+    await Listing.insertMany(initData.data);
+    console.log("created db successfully : ");
 
-    // Update owner properly
-    const newData = initData.data.map(obj => ({
-        ...obj,
-        owner: '6999fd1642be0738d93fc0f1'
-    }));
-
-    // Correct insert
-    const inserted = await Listing.insertMany(newData);
-
-    // Confirm
-    inserted.forEach(doc => console.log(doc._id, doc.owner));
-};
+}
