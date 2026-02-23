@@ -7,13 +7,10 @@ const {saveRedirectUrl}= require("../middleware.js");
 const {isLoggedin} = require("../middleware.js");
 const userController = require("../controllers/users.js")
 
-router.get("/signup" ,(userController.renderSignupform));
 
-router.post("/signup" ,
-<<<<<<< HEAD
-     wrapAsync(userController.signup));
-router.get("/login", (userController.renderloginform));
-=======
+router.route("/signup")
+.get((userController.renderSignupform))
+.post(
      wrapAsync(async (req,res,next) =>{
         try{
 
@@ -32,16 +29,13 @@ router.get("/login", (userController.renderloginform));
             req.flash("error", e.message);
             res.redirect("/signup");
         }
-    
-
 }));
-router.get("/login", (req,res) =>{
-    res.render("users/login.ejs")
-});
->>>>>>> 0e404b59a23d96caf1918c168c9efd2ebdeb8507
 
-router.post(
-  "/login",
+router.route("/login")
+.get((req,res) =>{
+    res.render("users/login.ejs")
+})
+.post(
   saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
