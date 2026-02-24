@@ -55,8 +55,7 @@ const sessionOptions= {
 };
 
 app.get("/", (req,res)=>{
-    res.send("i am ready to get request ")
-
+    res.redirect("/listings");
 });
 
 
@@ -92,6 +91,8 @@ app.use((err, req,res,next) =>{
 });
 
 
-app.listen(9000, ()=>{
-    console.log("server start now")
+const PORT = process.env.PORT || 9000;
+
+app.listen(PORT, ()=>{
+    console.log("server start now");
 });
