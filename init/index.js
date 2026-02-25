@@ -4,8 +4,7 @@ const Listing = require("../models/listing.js");
 
 const mongoose = require("mongoose");
 
-const MONGO_URL =
-  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL ="mongodb+srv://nishadguptad_db_user:dYQvyK8BNrnOrMac@wanderlust.ftkvfx6.mongodb.net/wanderlust?retryWrites=true&w=majority"
 
 async function main() {
   await mongoose.connect(MONGO_URL);
