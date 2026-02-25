@@ -26,17 +26,17 @@ app.use(express.static(path.join(__dirname ,"/public")));
 
 
 const mongoose = require("mongoose");
-const MONGO_URL= "mongodb+srv://nishadguptad_db_user:dYQvyK8BNrnOrMac@wanderlust.ftkvfx6.mongodb.net/Wanderlust?retryWrites=true&w=majority";
 
+const MONGO_URL =
+  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
-main().then(()=>{
-    console.log("mongoose connect to db ")
-}).catch((err)=>{
-    console.log(err);
-})
-async function main(){
-   await mongoose.connect(MONGO_URL);
+async function main() {
+  await mongoose.connect(MONGO_URL);
 }
+
+main()
+  .then(() => console.log("mongoose connect to db"))
+  .catch(err => console.log(err));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
