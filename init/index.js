@@ -4,7 +4,7 @@ const Listing = require("../models/listing.js");
 
 const mongoose = require("mongoose");
 
-const MONGO_URL ="mongodb+srv://nishadguptad_db_user:dYQvyK8BNrnOrMac@wanderlust.ftkvfx6.mongodb.net/wanderlust?retryWrites=true&w=majority"
+const MONGO_URL ="mongodb+srv://nishadguptad_db_user:dYQvyK8BNrnOrMac@wanderlust.ftkvfx6.mongodb.net/Wanderlust?retryWrites=true&w=majority"
 
 async function main() {
   await mongoose.connect(MONGO_URL);
