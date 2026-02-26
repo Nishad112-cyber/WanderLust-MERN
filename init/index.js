@@ -2,19 +2,17 @@ const mongoose= require("mongoose");
 const initData= require("./data.js");
 const Listing = require("../models/listing.js");
 
-const MONGO_URL= "mongodb://127.0.0.1:27017/wanderlust";
+const mongoose = require("mongoose");
 
-main()
-.then(async ()=>{
-    console.log("mongoose connect to db ")
-  await Data();
-}).catch((err)=>{
-    console.log(err);
-})
-async function main(){
-   await mongoose.connect(MONGO_URL);
+const MONGO_URL ="mongodb+srv://nishadguptad_db_user:dYQvyK8BNrnOrMac@wanderlust.ftkvfx6.mongodb.net/Wanderlust?retryWrites=true&w=majority"
+
+async function main() {
+  await mongoose.connect(MONGO_URL);
 }
 
+main()
+  .then(() => console.log("mongoose connect to db"))
+  .catch(err => console.log(err));
 
 const Data = async ()=>{
     await Listing.deleteMany({});
