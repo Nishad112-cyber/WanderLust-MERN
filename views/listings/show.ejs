@@ -1,9 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 <div class="row"> 
-<div class="col-8 offset-2">
+<div class="col-12 col-md-8 offset-md-2">
 <h3><%= listing.title %></h3>
  </div>
-<div class="card col-6 offset-2 listing-card">
+<div class="card col-12 col-md-6 offset-md-3 listing-card">
     <img
         src="<%= listing.image.url %>"
         class="card-img-top show-img"
@@ -37,7 +37,7 @@
         </button>
     </form>
 </div>
-<div class="col-8 offset-3">
+<div class="col-12 col-md-8 offset-md-2">
 <hr />
 <h4>Leave a Review</h4>
 <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate
