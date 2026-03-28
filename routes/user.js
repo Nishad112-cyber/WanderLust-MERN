@@ -25,7 +25,7 @@ router.route("/signup")
         req.flash("error", "Signup not allowed");
         return res.redirect("/signup");
       }
-       if (password !== allowedPassword) {   // 👈 yaha add karo
+       if (password !== allowedPassword) { 
         req.flash("error", "Signup not allowed");
         return res.redirect("/signup");
       }

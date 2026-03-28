@@ -9,7 +9,8 @@ body{
  }
 /* Navbar */
 .navbar {
-    height: 5rem;
+    height: auto;
+    min-height: 5rem;
 }
 .fa-compass {
     color: #fe424d;
